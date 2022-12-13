@@ -4,26 +4,32 @@ export default function Textform(props) {
   const handleUpperClick = () => {
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("Converted to uppercase!", "success");
   };
 
   const handleLowerClick = () => {
     let newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("Converted to lowercase!", "success");
   };
 
   const clearTextArea = () => {
     let newText = "";
     setText(newText);
+    props.showAlert("Text cleared!", "success");
   };
 
   const handleExtraSpaces = () => {
     let newText = text.split(/[  ]+/);
     setText(newText.join(" "));
+    props.showAlert("Extra spaces cleared!", "success");
   };
+
   const handleCopy = () => {
     var newText = document.getElementById("myBox");
     newText.select();
     navigator.clipboard.writeText(newText.value);
+    props.showAlert("Text copied!", "success");
   };
 
   const handleOnChange = (event) => {
@@ -77,7 +83,11 @@ export default function Textform(props) {
         </p>
         <p>{0.008 * text.split(" ").length} minutes to read</p>
         <h2>Preview</h2>
-        <p>{text.length > 0 ? text : "Enter something in the textbox to preview here"}</p>
+        <p>
+          {text.length > 0
+            ? text
+            : "Enter something in the textbox to preview here"}
+        </p>
       </div>
     </>
   );
